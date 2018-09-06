@@ -2,9 +2,73 @@
 the assignment operator in Swift does not itself return a value,
 to prevent it from being mistakenly used when the equal to operator (==) is intended*/
 
+
 /*Unlike the arithmetic operators in C and Objective-C, 
 the Swift arithmetic operators don’t allow values to overflow by default
 You can opt in to value overflow behavior by using Swift’s overflow operators (such as a &+ b).*/
 
+
 /*In a % b, the sign of b is ignored for negative values of b. 
 This means that a % b and a % -b always give the same answer.*/
+
+
+//IDENTITY OPERATOR
+/*Because classes are reference types, it’s possible for multiple constants and variables
+to refer to the same single instance of a class behind the scenes. 
+(The same isn’t true for structures and enumerations)
+Swift provides two identity operators to check if 2 variables refer to same instance of class:
+Identical to (===)
+Not identical to (!==)
+Note that identical to (represented by three equals signs, or ===) doesn’t mean the same thing
+as equal to (represented by two equals signs, or ==). Identical to means that two constants
+or variables of class type refer to exactly the same class instance*/
+class abcd {
+var s = 10 }
+let obj1 = abcd()
+let obj2 = obj1
+if obj1 === obj2 {
+  print("these variables refer to same instance of abcd class") }
+  
+ 
+ /*You can compare two tuples if they have the same type and the same number of values.
+ Tuples are compared from left to right, one value at a time,
+ until the comparison finds two values that aren’t equal.
+ Those two values are compared, and the result of that comparison 
+ determines the overall result of the tuple comparison.*/
+ (1, "zebra") < (2, "apple")   // true because 1 is less than 2; "zebra" and "apple" are not compared
+(3, "apple") < (3, "bird")    // true because 3 is equal to 3, and "apple" is less than "bird"
+(4, "dog") == (4, "dog")      // true because 4 is equal to 4, and "dog" is equal to "dog"
+//The Swift standard library includes tuple comparison operators for tuples with fewer than seven elements.
+
+
+//NIL-COALESCING OPERATOR   (a ?? b)
+/*The nil-coalescing operator is shorthand for the code below:  a != nil ? a! : b
+The expression a is always of an optional type. The expression b 
+must match the type that is stored inside a.*/
+let defaultColorName = "red"
+var userDefinedColorName: String?   // defaults to nil
+var colorNameToUse = userDefinedColorName ?? defaultColorName
+// userDefinedColorName is nil, so colorNameToUse is set to the default of "red"
+
+
+//RANGE OPERATORS
+/*
+1)Close Range Operator: a...b
+Runs from a to b inclusive of both a & b
+2)Half-Open Range Operator: a..<b
+Runs from a to b ,but doesn't include b
+3)One-Sided Ranges: [a...] or [...a] or [..<a]
+this operator continue as far as possible in one direction*/
+let names = ["ap","anand","sachin","roshan","suvam"]
+for i in names[...2] { print(names[i]) }
+//ap
+//anand
+//sachin
+
+
+
+
+
+
+
+
