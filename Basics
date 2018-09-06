@@ -91,7 +91,52 @@ catch abc_errors.novalue { print("there is no value in optional")}
 
 
 
-//assertions & preconditions
+//sometimes it s better to crash your app than running it in invalid state
+//assertions , preconditions & fatalErrors
+/*Assertions and preconditions are checks that happen at runtime. 
+You use them to make sure an essential condition is satisfied before 
+executing any further code. If the Boolean condition in the assertion or precondition 
+evaluates to true, code execution continues as usual. If the condition evaluates to false, 
+the current state of the program is invalid; code execution ends, and your app is terminated.
+The DIFFERENCE between assertions and preconditions is in when they’re checked:
+Assertions are checked only in debug builds, but preconditions are checked in both debug
+and production builds.In production builds, the condition inside an assertion isn’t evaluated.
+This means you can use as many assertions as you want during your development process,
+without impacting performance in production. */
+// all these messgae will be displayed in the debugger
+let age = 2
+assert(age >= 0,"age should be greater than zero")
+//if assert condition is not satisfied than program execution stops
+if(age > 0){}
+else{
+    assertionFailure("age should be greater than 0")
+}
+var index = 3
+precondition(index > 0,"index has to be greater than   zero")
+//preconditionFailure()
+/*If you compile in unchecked mode (-Ounchecked), preconditions aren’t checked.
+The compiler assumes that preconditions are always true, and it optimizes your code accordingly. 
+However, the fatalError(_:file:line:) function always halts execution,
+regardless of optimization settings.*/
+//They are typically thrown when the application enters an unknown or unexpected state
+if index < 0
+{fatalError("index is invalid")}
+
+/*Swift Optimisation Levels
+To understand these assertions you need to understand optimisation levels. 
+When you build your app the compiler will perform optimizations on your code
+in order to make it run faster. You can have different optimisation level
+s for different build configurations. These are the optimisation levels we’re interested in:
+-Onone (default for debug builds)
+-O (default for release builds)
+-Ounchecked
+
+assert(),assertionFailure()- The condition will only be evaluated for -Onone builds
+precondition(),preconditionFailure() - works for -Onone and -O builds. In other words, for default debug
+                                       and release configurations
+fatalError()- It works for all optimisation levels in all build configurations */
+
+
 
 
 
