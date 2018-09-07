@@ -1,7 +1,7 @@
 # Swift
 Learning Swift in comparison to c++
 
-This repo will be helpful for those who know c++ and want to learn swift
+This repo will be helpful for those who know c++ (or any other objective programming language) and want to learn swift
 
 In this repo i will point out those things which in swift are different from c++
 
