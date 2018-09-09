@@ -1,6 +1,6 @@
  //1)******* ACCESSING & MODIFYING A STRING ********
                                   
-        //1A)STRING INDICES
+ //1A)STRING INDICES
       
 /*As mentioned above, different characters can require different
 amounts of memory to store, so in order to determine which Character is at a particular
@@ -28,7 +28,7 @@ print(ss[j],terminator: "")    }
 //works in 4+ swift versions
 //OUTPUT : AanchalPatial
 
-      //1B)INSERTING & REMOVING
+//1B)INSERTING & REMOVING
       
 var name = "cris ronald7o"
 //insert a character
@@ -58,7 +58,7 @@ print(name)
 
  
 
-//MULTILINE STRING LITERALS: a string that spans several lines
+//2)MULTILINE STRING LITERALS: a string that spans several lines
  //works only in swift 4+ versions
  var str = """
  my name 
@@ -70,7 +70,42 @@ print(name)
  but you don’t want the line breaks to be part of the string’s value,
  write a backslash (\) at the end of those lines:*/
  
-//Special Characters
+ 
+ 
+//3)SUBSTRING
+/*When you get a substring from a string, the result is an instance of Substring, not another string
+However, unlike strings, you use substrings for only a short amount of time while performing actions on a string. 
+When you’re ready to store the result for a longer time, you convert the substring to an instance of String.
+As mentioned above, substrings aren’t suitable for long-term storage—because they reuse the storage of the original string,
+the entire original string must be kept in memory as long as any of its substrings are being used.
+Refer to this link for clear understanding:- https://docs.swift.org/swift-book/_images/stringSubstring_2x.png*/
+var name2 = "aanchal patial"
+var k = name2.firstIndex(of: "p")
+var surname = name2[p..<name2.endIndex]
+print(surname)
+var surnameString = String(surname)
+//OUTPUT: patial
+
+
+//4)COMPARING STRINGS
+/*Swift provides THREE ways to compare textual values: 
+string and character equality, prefix equality, and suffix equality.*/
+//4A) == & !=
+*Two String values (or two Character values) are considered equal if their extended grapheme clusters are 
+canonically equivalent. Extended grapheme clusters are canonically equivalent if they have the same
+linguistic meaning and appearance, even if they’re composed from different Unicode scalars behind the scenes.*/
+//4B) hasPrefix
+var alp = "abcdefghijkl"
+if alp.hasPrefix("abc") {
+    print("abc found is prefix of string")
+}
+//4C) hasSuffix
+if alp.hasSuffix("jkl") {
+    print("jkl is suffix of string")
+}
+
+ 
+//5)Special Characters
  /An arbitrary Unicode scalar, written as \u{n}
  let sparklingHeart = "\u{1F496}"
  let threeDoubleQuotationMarks = """
@@ -78,21 +113,20 @@ Escaping the first quotation mark \"""
 Escaping all three quotation marks \"\"\"
 """
 
-//Initialising an empty string
+//6)Initialising an empty string
 var str2 = ""
 if str2.isEmpty {print("given string is empty.")}
 
-//Swift’s String type is a value type.
+//7)Swift’s String type is a value type.
 
-//Unicode scalar is a unique 21-bit number for a character or modifier
+//8)Unicode scalar is a unique 21-bit number for a character or modifier
 let chick = "\u{1F425}"
 
-//size of string
+//9)size of string
 print(str.count)
 
                            
-
-//SUBSTRING
+//10)Unicode Representations of Strings...........left
 
 
 
