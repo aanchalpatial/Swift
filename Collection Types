@@ -3,6 +3,8 @@ Arrays are ordered collections of values.
 Sets are unordered collections of unique values. 
 Dictionaries are unordered collections of key-value associations.*/
 
+
+
 //1)Arrays
 
 //creating an empty array
@@ -23,3 +25,57 @@ var shoppingList = ["Eggs", "Milk"]
 Swift can infer that [String] is the correct type to use for the shoppingList variable.*/
 print()
 print(shoppingList[1])
+
+//Acessing & Modifying an Array//Acessing & Modifying an Array
+var arr3 = ["ap","anand","sachin","suvam"]
+print(arr3.count)
+if !arr3.isEmpty {
+print("arr3 is not empty")}
+arr3.append("roshan")
+arr3 += ["ankit","akshay"]
+for i in arr3 {print(i,terminator: " ")}
+print()
+arr3[4..<6] = ["abc","xyz"]
+for i in arr3 {print(i,terminator: " ")}
+print()
+arr3.insert("roshan",at: 4)
+for i in arr3 {print(i,terminator: " ")}
+print()
+arr3.remove(at: 5)
+for i in arr3 {print(i,terminator: " ")}
+print()
+/*If you want to remove the final item from an array, use the removeLast() method
+rather than the remove(at:) method to avoid the need to query the array’s count property. */
+arr3.removeLast()
+for i in arr3 {print(i,terminator: " ")}
+print()
+
+//Iterating over an array
+/*If you need the integer index of each item as well as its value, 
+use the enumerated() method to iterate over the array instead.*/
+for (i,value) in arr3.enumerated() {print("\(i+1). \(value)")}
+
+
+
+
+//2)Sets
+
+
+
+//3)Dictionaries
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
