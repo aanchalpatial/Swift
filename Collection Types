@@ -63,11 +63,54 @@ for (i,value) in arr3.enumerated() {print("\(i+1). \(value)")}
 You can use a set instead of an array when the order of items is not important,
 or when you need to ensure that an item only appears once.*/
 
+/*A type must be hashable in order to be stored in a set—that is,
+ the type must provide a way to compute a hash value for itself.
+ All of Swift’s basic types (such as String, Int, Double, and Bool) are hashable by default */
+ var numbers = Set<Int>()
+ //sets do not have an equivalent shorthand form.
+ //add an item in set
+ numbers.insert(7)
+ numbers.insert(10)
+ numbers.insert(7)
+ numbers.insert(4)
+ numbers.insert(1)
+ numbers.insert(11)
+ print(numbers.count)
+ //Creating a Set with an Array Literal
+ var favoriteGenres: Set = ["Rock", "Classical", "Hip hop"]
+ //remove an item
+ numbers.remove(7)
+ if !numbers.contains(7) { print("no. 7 is not present anymore in set")}
+ 
+ /*Swift’s Set type does not have a defined ordering. To iterate over the values 
+ of a set in a specific order, use the sorted() method*/
+ for i in numbers {print(i,terminator: " ")}
+ print()
+ for i in numbers.sorted() {print(i,terminator: " ")}
+ print()
 
+ //performing set operations
+ var set1: Set = [1, 3, 5, 7, 9]
+ var set2: Set = [0, 2, 4, 6, 8]
+ var unionSet = set1.union(set2).sorted()
+ for i in unionSet {print(i,terminator: " ")}
+ print()
+ var intersectionSet = set1.intersection(set2).sorted()
+ var subSet = set1.subtracting(set2).sorted()
+ var symDiffSet = set1.symmetricDifference(set2).sorted()
 
+ //Set Membership and Equality
+ var num:Set = [1,2,3,4,5,6,7,8,9,10]
+var evenNumbers: Set = [2,4,6,8,10]
+var oddNumbers: Set = [1,3,5,7,9]
+if evenNumbers != oddNumbers {print("they are different")}
+if evenNumbers.isSubset(of: num) {print("yes")}
+if num.isSuperset(of: oddNumbers) {print("yes")}
+if evenNumbers.isDisjoint(with: oddNumbers) {print("yes")}
+//isStrictSubset(of:) or isStrictSuperset(of:)  are there as well
 
-
-
+ 
+ 
 
 //3)Dictionaries
 //Note:tuples are not key-value pairs. tuples are group of different(more than 2) values represented as one.
@@ -112,16 +155,4 @@ print()
 for number in playerNumbers.values {
     print(number,terminator: " ")
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
