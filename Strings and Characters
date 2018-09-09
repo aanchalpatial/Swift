@@ -1,0 +1,106 @@
+ //1)******* ACCESSING & MODIFYING A STRING ********
+                                  
+        //1A)STRING INDICES
+      
+/*As mentioned above, different characters can require different
+amounts of memory to store, so in order to determine which Character is at a particular
+position, you must iterate over each Unicode scalar from the start or end of that String.
+For this reason, Swift strings can’t be indexed by integer values.
+*/
+//Swift strings CAN'T be indexed by integer values.                 *******
+let ss = "AanchalPatial"
+//print(ss[2]) is AN ERROR
+
+print(ss[ss.startIndex])
+
+var j = ss.index(after: ss.startIndex)
+print(ss[j])
+
+var k = ss.index(before: ss.endIndex)
+print(ss[k])
+
+var i = ss.index(ss.startIndex,offsetBy: 2)
+print(ss[i])for j in ss.indices {
+print(ss[j],terminator: "")}
+
+for j in ss.indices {
+print(ss[j],terminator: "")    }
+//works in 4+ swift versions
+//OUTPUT : AanchalPatial
+
+      //1B)INSERTING & REMOVING
+      
+var name = "cris ronald7o"
+//insert a character
+var i = name.endIndex
+name.insert("7",at: i)
+print(name)
+//OUTPUT: cris ronald7o7
+
+//insert a string
+var tag = "tiano"
+i = name.index(name.startIndex,offsetBy: 4)
+name.insert(contentsOf: tag,at: i)
+print(name)
+//OUTPUT: cristiano ronald7o7
+
+//remove a character
+i = name.index(name.startIndex,offsetBy: 16)
+name.remove(at: i)
+print(name)
+//OUTPUT: cristiano ronaldo7
+
+//remove a substring
+let range = name.startIndex...name.index(name.startIndex,offsetBy: 9)
+name.removeSubrange(range)
+print(name)
+//OUTPUT: ronaldo7
+
+ 
+
+//MULTILINE STRING LITERALS: a string that spans several lines
+ //works only in swift 4+ versions
+ var str = """
+ my name 
+ is 
+ aanchal \ 
+ patial
+ """
+ /*If you want to use line breaks to make your source code easier to read,
+ but you don’t want the line breaks to be part of the string’s value,
+ write a backslash (\) at the end of those lines:*/
+ 
+//Special Characters
+ /An arbitrary Unicode scalar, written as \u{n}
+ let sparklingHeart = "\u{1F496}"
+ let threeDoubleQuotationMarks = """
+Escaping the first quotation mark \"""
+Escaping all three quotation marks \"\"\"
+"""
+
+//Initialising an empty string
+var str2 = ""
+if str2.isEmpty {print("given string is empty.")}
+
+//Swift’s String type is a value type.
+
+//Unicode scalar is a unique 21-bit number for a character or modifier
+let chick = "\u{1F425}"
+
+//size of string
+print(str.count)
+
+                           
+
+//SUBSTRING
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
