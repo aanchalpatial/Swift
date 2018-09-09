@@ -62,10 +62,51 @@ for (i,value) in arr3.enumerated() {print("\(i+1). \(value)")}
 
 
 
+
+
 //3)Dictionaries
+//Note:tuples are not key-value pairs. tuples are group of different(more than 2) values represented as one.
+/*A dictionary stores associations between keys of the same type and values of the same type
+in a collection with no defined ordering. Each value is associated with a unique key, 
+which acts as an identifier for that value within the dictionary. 
+Unlike items in an array, items in a dictionary do not have a specified order.*/
+//creating an empty Dictionary
+// var playerNumbers = [String: Int]()
+//another war to create an empty dictionary
+//var playerNumbers = Dictionary<String, Int>()
+//Creating a Dictionary with a Dictionary Literal
+var playerNumbers = ["ronaldo": 7,"messi": 10,"saurez": 9]
+print(playerNumbers.count)
 
+//imp func. count,isEmpty
+print("Jersey Number of CR7 is \(playerNumbers["ronaldo"]!)")
+//update values in dictionary
+playerNumbers["ronaldo"] = 09
+print("Jersey Number of CR7 is \(playerNumbers["ronaldo"]!)")
+//alternate method to update
+/* the updateValue(_:forKey:) method sets a value for a key if none exists, 
+or updates the value if that key already exists.
+HOWEVER, the updateValue(_:forKey:) method returns the old value after performing an update.*/
+if let old = playerNumbers.updateValue(07, forKey: "ronaldo") {
+    print("old jersey number of ronaldo was \(old)")
+}
+print("Jersey Number of CR7 now is \(playerNumbers["ronaldo"]!)")
 
+//remove a key-value pair
+playerNumbers["saurez"] = nil
+print(playerNumbers.count)
 
+//iterating over dictionar
+for (name,number) in playerNumbers {
+    print("\(name) has jersey number \(number)")
+}
+for name in playerNumbers.keys {
+    print(name,terminator: " ")
+}
+print()
+for number in playerNumbers.values {
+    print(number,terminator: " ")
+}
 
 
 
