@@ -1,1 +1,34 @@
+import Foundation
 
+func oddEven(n: Int) -> String {
+    if n%2 == 0 {return "even"}
+    else {return "odd"}
+}
+print(oddEven(n: 9))
+/*Functions with Multiple Return Values
+You can use a tuple type as the return type for a function to return multiple values 
+as part of one compound return value.*/
+func playerDetails(name: String) -> (x: String,y: Int) {
+    if name == "ronaldo" {
+        return ("Juventus",07)
+    }
+    else {
+        return ("#####",-1)
+    }
+}
+ var (team,jersey) =  playerDetails(name: "ronaldo")
+ print("ronaldo plays for \(team) & in jersey number \(jersey)")
+ //another way
+ /*var result =  playerDetails(name: "ronaldo")
+ print("ronaldo plays for \(result.x) & in jersey number \(result.y)")*/
+
+
+
+/*Optional Tuple Return Types
+If the tuple type to be returned from a function has the potential to have “no value” for the entire tuple, 
+you can use an optional tuple return type to reflect the fact that the entire tuple can be nil. 
+You write an optional tuple return type by placing a question mark after the tuple type’s closing parenthesis, 
+such as (Int, Int)? or (String, Int, Bool)?.
+NOTE:= An optional tuple type such as (Int, Int)? is different from a tuple that contains optional types such as (Int?, Int?).
+With an optional tuple type, the entire tuple is optional, not just each individual value within the tuple.
+You can use OPTIONAL BINDING to check whether the function returns an actual tuple value or nil:*/
