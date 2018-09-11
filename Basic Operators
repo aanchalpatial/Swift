@@ -24,7 +24,7 @@ as equal to (represented by two equals signs, or ==). Identical to means that tw
 or variables of class type refer to exactly the same class instance*/
 class abcd {
 var s = 10 }
-let obj1 = abcd()
+let obj1 = abcd()     //creating an instance of class abcd
 let obj2 = obj1
 if obj1 === obj2 {
   print("these variables refer to same instance of abcd class") }
