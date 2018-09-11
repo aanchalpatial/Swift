@@ -1,6 +1,6 @@
 import Foundation
 
-//FOR IN LOOPS
+//1)FOR IN LOOPS
 //for-in loop to iterate over a sequence, such as items in an array, ranges of numbers, or characters in a string.
 var ap = "aanchalpatial"
 for i in ap {
@@ -26,14 +26,23 @@ for i in stride(from: 0,through: 10,by: 2) {print(i,terminator: " ")}
 print()
 
 
-//WHILE LOOPS
+
+
+//2)WHILE LOOPS
 /*These kinds of loops are best used when the number of iterations is not known before the first iteration begins. 
 Swift provides two kinds of while loops:
 WHILE evaluates its condition at the start of each pass through the loop.
 REPEAT-WHILE evaluates its condition at the end of each pass through the loop.This loop is same as do-while loop on c++
 */
 
-//if else statements same as in c++
+
+
+//3)if else statements same as in c++
+
+
+
+
+//4)****SWITCH *****
 //switch statment in swift doesn't require break; statement
 /*In contrast with switch statements in C and Objective-C, switch statements in Swift do not fall through 
 the bottom of each case and into the next one by default. Instead, the entire switch statement 
@@ -71,6 +80,128 @@ switch name_number {
     default:
     print("not matched")
 }
+
+/*  VALUE BINDINGS
+A switch case can name the value or values it matches to temporary constants or variables, 
+for use in the body of the case. This behavior is known as value binding, 
+because the values are bound to temporary constants or variables within the case’s body.*/
+let anotherPoint = (2, 1)
+switch anotherPoint {
+case (let x, 0):
+    print("on the x-axis with an x value of \(x)")
+case (0, let y):
+    print("on the y-axis with a y value of \(y)")
+case let (x, y):
+    print("somewhere else at (\(x), \(y))")
+}
+//A switch case can use a WHERE clause to check for additional condition
+let yetAnotherPoint = (1, -1)
+switch yetAnotherPoint {
+case let (x, y) where x == y:
+    print("(\(x), \(y)) is on the line x == y")
+case let (x, y) where x == -y:
+    print("(\(x), \(y)) is on the line x == -y")
+case let (x, y):
+    print("(\(x), \(y)) is just some arbitrary point")
+}
+// Prints "(1, -1) is on the line x == -y"
+/*Compound Cases
+Multiple switch cases that share the same body can be combined by writing several patterns after case,
+with a comma between each of the pattern*/
+let someCharacter: Character = "e"
+switch someCharacter {
+case "a", "e", "i", "o", "u":
+    print("\(someCharacter) is a vowel")
+case "b", "c", "d", "f", "g", "h", "j", "k", "l", "m",
+     "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z":
+    print("\(someCharacter) is a consonant")
+default:
+    print("\(someCharacter) is not a vowel or a consonant")
+}
+// Prints "e is a vowel"
+
+
+
+//5)CONTROL TRANSFER STATEMENTS
+/*Control transfer statements change the order in which your code is executed, by transferring control from one piece of code to another. 
+Swift has five control transfer statements :-
+continue : same as in c++
+break : sme as in c++
+fallthrough : 
+return : same as in c++
+throw : used in error handling*/
+
+/*FALLTHROUGH
+In Swift, switch statements don’t fall through the bottom of each case and into the next one. 
+That is, the entire switch statement completes its execution as soon as the first matching case is completed.
+By contrast, C requires you to insert an explicit break statement at the end of every switch case to prevent fallthrough.
+Avoiding default fallthrough means that Swift switch statements are much more concise and predictable than their counterparts 
+in C, and thus they avoid executing multiple switch cases by mistake.
+If you need C-style fallthrough behavior, you can opt in to this behavior on a case-by-case basis with the fallthrough keyword. The example below uses fallthrough to create a textual description of a number.
+
+let integerToDescribe = 5
+var description = "The number \(integerToDescribe) is"
+switch integerToDescribe {
+case 2, 3, 5, 7, 11, 13, 17, 19:
+    description += " a prime number, and also"
+    fallthrough
+case 99:
+    description += " blah blah and also"
+    fallthrough
+default:
+    description += " an integer."
+}
+print(description)
+// Prints "The number 5 is a prime number, and also blah blah and also an integer."
+/*The fallthrough keyword "DOES NOT" check the case conditions for the switch case that it causes execution to fall into. 
+The fallthrough keyword simply causes code execution to move directly to the statements
+inside the next case (or default case) block, as in C’s standard switch statement behavior.*/
+
+
+
+
+//6)LABELLED STATEMENTS
+/*In Swift, you can nest loops and conditional statements inside other loops and conditional statements to 
+create complex control flow structures. However, loops and conditional statements can both use the break statement 
+to end their execution prematurely. Therefore, it is sometimes useful to be explicit about which loop or conditional statement
+you want a break statement to terminate. Similarly, if you have multiple nested loops, it can be useful to be
+explicit about which loop the continue statement should affect.
+To achieve these aims, you can mark a loop statement or conditional statement with a statement label. 
+With a conditional statement, you can use a statement label with the break statement to end the execution of
+the labeled statement. With a loop statement, you can use a statement label with the break or continue statement
+to end or continue the execution of the labeled statement.*/
+
+
+
+//7)GUARD STATEMENT
+/*A guard statement, like an if statement, executes statements depending on the Boolean value of an expression.
+Unlike an if statement, a guard statement always has an else clause—the code inside the else clause is executed 
+if the condition is not true.
+If that condition is not met, the code inside the else branch is executed.
+That branch must transfer control to exit the code block in which the guard statement appears.
+It can do this with a control transfer statement such as return, break, continue, 
+or throw, or it can call a function or method that doesn’t return, such as fatalError(_:file:line:).*/
+var i = 10
+for _ in 1...100 {
+    guard i > 0  else {
+        print("i has become negative")
+        break
+    }
+    print("i = \(i)",terminator: " ")
+    i = i-1
+}
+print("asdfgh")
+
+
+
+
+//Checking API Availability .........  LEFT
+
+
+
+
+
+
 
 
 
