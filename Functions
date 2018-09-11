@@ -5,7 +5,9 @@ func oddEven(n: Int) -> String {
     else {return "odd"}
 }
 print(oddEven(n: 9))
-/*Functions with Multiple Return Values
+
+
+/*2)Functions with Multiple Return Values
 You can use a tuple type as the return type for a function to return multiple values 
 as part of one compound return value.*/
 func playerDetails(name: String) -> (x: String,y: Int) {
@@ -24,7 +26,7 @@ func playerDetails(name: String) -> (x: String,y: Int) {
 
 
 
-/*Optional Tuple Return Types
+/*3)Optional Tuple Return Types
 If the tuple type to be returned from a function has the potential to have “no value” for the entire tuple, 
 you can use an optional tuple return type to reflect the fact that the entire tuple can be nil. 
 You write an optional tuple return type by placing a question mark after the tuple type’s closing parenthesis, 
@@ -32,3 +34,49 @@ such as (Int, Int)? or (String, Int, Bool)?.
 NOTE:= An optional tuple type such as (Int, Int)? is different from a tuple that contains optional types such as (Int?, Int?).
 With an optional tuple type, the entire tuple is optional, not just each individual value within the tuple.
 You can use OPTIONAL BINDING to check whether the function returns an actual tuple value or nil:*/
+
+
+
+
+//4)ARGUMENT LABELS(external name) & PARAMETER NAMES(internal name)
+//Each function parameter has both an argument label and a parameter name.
+//xx is argument label and XX is parameter name
+//default case: YY is both argument label & parameter name
+//no argument label, ZZ parameter
+func abc (xx XX: Int,YY: Int,_ ZZ: Int) {
+    print(XX)
+    print(YY)
+    print(ZZ)
+}
+abc(xx: 10,YY: 20,30)
+
+
+//5)VARIADIC PARAMETERS
+/*A variadic parameter accepts zero or more values of a specified type.
+Write variadic parameters by inserting three period characters (...) after the parameter’s type name.
+The values passed to a variadic parameter are made available within the function’s body as an array of the appropriate type.
+A function may have AT MOST 1 variadic parameter.*/
+func xyz (_ i: Int...) {
+for j in i{
+    print(j,terminator: " ")
+    }
+}
+xyz(5,4,3,2,1)
+
+
+
+//6)INOUT PARAMETERS
+//same as passing parameters by reference in c++
+//You write an in-out parameter by placing the inout keyword right before a parameter’s type and '&' before argument while calling
+func pqr (_ j: inout Int) {
+j = j*10
+}
+var m = 4
+pqr(&m)
+print(m)
+//***In-out parameters cannot have default values, and variadic parameters cannot be marked as inout.
+
+
+
+//7)FUNCTION TYPES .....directly from the link
+
