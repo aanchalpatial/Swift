@@ -18,7 +18,8 @@ For More on choosing between structures & classes : https://developer.apple.com/
 //2)MEMBERWISE INITIALISER
 /*All structures have an AUTOMATICALLY generated memberwise initializer, 
 which you can use to initialize the member properties of new structure instances
-Unlike structures, class instances don’t receive a default memberwise initializer. */
+Unlike structures, class instances don’t receive a default memberwise initializer. 
+Classes have initi() function which is declared inside the class an can be customised according to needs.*/
 struct graph {
 var x = Int()
 var y = Int()
