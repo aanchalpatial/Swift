@@ -1,0 +1,66 @@
+import Foundation
+
+
+//enum is user-defined data type which can only have discrete values
+//value type like struct
+//enum in swift is MORE FLEXIBLE than in c++, because each state can have its own associated data
+//you can only set the associated data only when assign it, and not after that
+//enum can have methods
+//enum can't have stored properties but it can have computed properties
+
+enum drinkType {
+    case coffee
+    case coke
+    case water
+}
+enum menuList {
+    case drink(type: drinkType)
+    case fries
+    case burger(cheeseSlice: Bool)
+    mutating func switchToBeingFries(){
+        self = .fries
+    }
+}
+var order1 = menuList.drink(type: .coke)
+var order2 = menuList.fries
+var order3 = menuList.burger(cheeseSlice: false)
+
+//you can modify enum using self inside a mutating function
+order3.switchToBeingFries()     //using a mutating function to change enum value
+
+//checking an enum state
+//switch is prefered over ==
+//associated data is acessed usind (let varName) just after case name
+switch order3 {
+    case .drink(let type): print("here is ur drink : \(type)")
+    case .fries: print("here are ur fries")
+    case .burger(let slice): print("here is ur delicious burger ",terminator: "")
+                  var str:String = slice ? "with slice" : "without slice"
+                  print(str)
+    default: print("incorrect order")
+}
+
+/*NOT WORKING
+//Iterating over Enumeration Cases
+/*For some enumerations, it’s useful to have a collection of all of that enumeration’s cases. 
+You enable this by writing : CaseIterable after the enumeration’s name. 
+Swift exposes a collection of all the cases as an allCases property of the enumeration type. */
+enum colorName {
+    case black
+    case blue
+}
+enum bikes: CaseIterable{
+    case splender(color: colorName)
+    case pulsar
+    case discover
+}
+
+for bk in bikes.allCases {
+    print(bk)
+}
+*/
+
+//RAW VALUES ........ left
+
+
+
