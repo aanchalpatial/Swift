@@ -29,43 +29,7 @@ print(xx)
 
 
 //optional
-//ALSO STUDIED IN DETAILS IN SEPARATE FILE named OPTIONAL in SWIFT REPO
-/*An optional represents two possibilities: Either there is a value,
-and you can unwrap the optional to access that value,
-or there isn’t a value at all.*/
- var vv: Int? = 10
- vv = nil                           //You can’t use nil with nonoptional constants and variables.
- print(vv)
-  /*FORCED_UNWrAPPING:Once you’re sure that the optional does contain a value, 
-  you can access its underlying value by adding an exclamation mark (!) 
-  to the end of the optional’s nameAlways make sure that an optional 
-  contains a non-nil value before using ! to force-unwrap its value*/
-  var p: Int? = 10
-  if(p != nil){
-      print(p!)
-  }
-  /*OPTIONAL_BINDING:You use optional binding to find out whether an optional 
-  contains a value, and if so, to make that value available as a temporary constant
-  or variable. Optional binding can be used with if and while statementsConstants 
-  and variables created with optional binding in an if statement are available 
-  only within the body of the if statement.*/
-   var cc: Int? = 23
-   if var i = cc {
-       print("there is a value:\(i)")
-   }
-   else {print("there is no value in optional")}
-   /*IMPLICITLY_UNWRAPPED_OPTIONALS: Sometimes it’s clear from a program’s structure
-   that an optional will always have a value,after that value is first set. 
-   In these cases, it’s useful to remove the need to check and unwrap the
-   optional’s value every time it’s accessed, because it can be safely 
-   assumed to have a value all of the time.
-    These kinds of optionals are defined as implicitly unwrapped optionals.
-    You write an implicitly unwrapped optional by placing an exclamation mark (String!)
-    rather than a question mark (String?) after the type that you want to make optional.
-    You can think of an implicitly unwrapped optional as giving permission for the optional
-    to be unwrapped automatically whenever it’s used.*/
-    var mm: String! = "blah blah"
-    print(mm)
+//STUDIED IN DETAILS IN SEPARATE FILE named OPTIONAL in SWIFT REPO
    
 
 
