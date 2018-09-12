@@ -1,0 +1,83 @@
+import Foundation
+
+//one of the most imp. features of swift programming language
+
+//1)optional
+/*An optional represents two possibilities: Either there is a value,
+and you can unwrap the optional to access that value,
+or there isn’t a value at all.*/
+ var vv: Int? = 10
+ vv = nil                           //You can’t use nil with nonoptional constants and variables.
+ print(vv)
+  /*2)FORCED_UNWrAPPING:Once you’re sure that the optional does contain a value, 
+  you can access its underlying value by adding an exclamation mark (!) 
+  to the end of the optional’s nameAlways make sure that an optional 
+  contains a non-nil value before using ! to force-unwrap its value
+  If you force unwrap an optional having nil value ,yout program crashes.*/
+  var p: Int? = 10
+  if(p != nil){
+      print(p!)
+  }
+  /*3)OPTIONAL_BINDING:You use optional binding to find out whether an optional 
+  contains a value, and if so, to make that value available as a temporary constant
+  or variable. Optional binding can be used with if and while statementsConstants 
+  and variables created with optional binding in an if statement are available 
+  only within the body of the if statement.*/
+   var cc: Int? = 23
+   if var i = cc {
+       print("there is a value:\(i)")
+   }
+   else {print("there is no value in optional")}
+   /*4)IMPLICITLY_UNWRAPPED_OPTIONALS: Sometimes it’s clear from a program’s structure
+   that an optional will always have a value,after that value is first set. 
+   In these cases, it’s useful to remove the need to check and unwrap the
+   optional’s value every time it’s accessed, because it can be safely 
+   assumed to have a value all of the time.
+    These kinds of optionals are defined as implicitly unwrapped optionals.
+    You write an implicitly unwrapped optional by placing an exclamation mark (String!)
+    rather than a question mark (String?) after the type that you want to make optional.
+    You can think of an implicitly unwrapped optional as giving permission for the optional
+    to be unwrapped automatically whenever it’s used.*/
+    var mm: String! = "blah blah"
+    print(mm)
+
+//5)NIL-COALESCING OPERATOR   (a ?? b)
+/*The nil-coalescing operator is shorthand for the code below:  a != nil ? a! : b
+The expression a is always of an optional type. The expression b 
+must match the type that is stored inside a.*/
+let defaultColorName = "red"
+var userDefinedColorName: String?   // defaults to nil
+var colorNameToUse = userDefinedColorName ?? defaultColorName
+// userDefinedColorName is nil, so colorNameToUse is set to the default of "red"
+
+
+//6)OPTIONAL CHAINING
+/*You can use ? when acessing an Optional to bail out of an expression midstream...this is called optional chaining
+You specify optional chaining by placing a question mark (?) after the optional value on which 
+you wish to call a property, method or subscript if the optional is non-nil. 
+This is very similar to placing an exclamation mark (!) after an optional value to force the unwrapping of its value.
+ The main difference is that optional chaining fails gracefully when the optional is nil,
+  whereas forced unwrapping triggers a runtime error when the optional is nil.*/
+class Person {
+    var residence: Residence?
+}
+
+class Residence {
+    var numberOfRooms = 1
+}
+let john = Person()
+/*let roomCount = john.residence!.numberOfRooms
+// this triggers a runtime error
+The code above succeeds when john.residence has a non-nil value and will set roomCount to an Int value
+ containing the appropriate number of rooms. However, this code always triggers a RUNTIME ERROR when residence is nil,
+  as illustrated above.
+*/
+if let roomCount = john.residence?.numberOfRooms {
+    print("John's residence has \(roomCount) room(s).")
+} else {
+    print("Unable to retrieve the number of rooms.")
+}
+// Prints "Unable to retrieve the number of rooms."
+
+
+
