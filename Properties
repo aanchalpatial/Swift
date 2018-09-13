@@ -19,9 +19,104 @@ Stored properties are provided only by classes and structures.*/
  of a reference type to a constant, you can still change that instance’s variable properties.*/
 
  //2)LAZY STORED PROPERTY
+ //can be used only for members of class or structs
  //A lazy stored property is a property whose initial value is not calculated until the first time it is used.
  /*Lazy properties are useful when the initial value for a property is dependent on outside factors whose values 
  are not known until after an instance’s initialization is complete.
   Lazy properties are also useful when the initial value for a property requires 
   complex or computationally expensive setup that should not be performed unless or until it is needed.*/
-  
+class c1 {
+    var name: String
+    var roll_no: Int
+    init(name: String,roll_no: Int) {
+        self.name = name
+        self.roll_no = roll_no
+        print("an instance of c1 class has been created")
+    }
+}
+class c2 {
+    var str: String
+    lazy var obj1 = c1(name: str,roll_no: -1)
+    init(str: String) {
+        self.str = str
+         print("an instance of c2 class has been created")
+    }
+}
+
+var obj2 = c2(str: "ap")
+//instance of c1 class has yet not been created
+//it will be created when we use it for the very first time
+print(obj2.obj1.name)
+/*Interesting Fact : Global constants and variables are always computed lazily, in a similar manner to Lazy Stored Properties.
+Unlike lazy stored properties, global constants and variables do not need to be marked with the lazy modifier.
+Local constants and variables are never computed lazily.*/
+
+
+
+
+//3)COMPUTED STORED PROPERTIES
+//computed properties are always variables(never constants)
+//Think of them as pieces of code which will calculate a value every time you call them
+//These type of properties can be used in or outside classes, structs, enums
+/*computed properties do not actually store a value. Instead, they provide a 
+GETTER and an OPTIONAL SETTER to retrieve and set other properties and values indirectly.*/
+struct areaRectangle {
+    var length: Int
+    var breadth: Int
+    var area: Int {                 //a computed proprty
+        get {
+            return length * breadth
+        }
+        /*set(newValue) {
+        If a computed property’s setter does not define a name for the new value to be set,
+        a default name of newValue is used.*/
+        set {
+            self.length  = newValue
+            self.breadth = 1
+        }
+        
+    }
+}
+ var rect1 = areaRectangle(length: 10,breadth: 5)
+ print(rect1.area)
+ rect1.area = 100
+ print(rect1.area)
+ 
+ //A computed property with a getter but no setter is known as a read-only computed property.
+ //You can simplify the declaration of a read-only computed property by removing the get keyword and its braces
+ 
+ 
+ 
+ 
+ 
+ //4)PROPERTY OBSERVERS
+/*Property observers observe and respond to changes in a property’s value.
+ Property observers are called every time a property’s value is set, 
+ even if the new value is the same as the property’s current value.*/
+ /*->You can add property observers to any stored properties you define, except for lazy stored properties
+ ->You can also add property observers to any inherited property (whether stored or computed) by overriding the property within a subclass
+ ->You don’t need property observers for nonoverridden computed properties, 
+ because you can observe and respond to changes to their value in the computed property’s setter*/
+ /*A)willSet : is called just before the value is stored.
+by default you get a "newValue" parameter, but you can name your parameter something different as well
+B)didSet : is called immediately after the new value is stored.
+by default you get a "oldValue" parameter, but you can name your parameter something different as well*/
+ var subject: String = "swift" {
+     willSet {
+         print("now i am studying \(subject), later i will study \(newValue).")
+     }
+     didSet {
+         print("earlier i was studying \(oldValue), now i am studying \(subject).")
+     }
+}
+subject = "eng"
+//willSet is called just before & didSet just after above statment
+
+
+
+
+
+ 
+ 
+
+
