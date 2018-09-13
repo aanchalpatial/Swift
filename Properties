@@ -1,0 +1,27 @@
+
+/*Computed properties are provided by classes, structures, and enumerations. 
+Stored properties are provided only by classes and structures.*/
+/*1)A STORED PROPERTY
+ is a constant or variable that is stored as part of an instance of a particular class or structure.*/
+ var v1:Int                     //an instance of Int() class
+ v1 = 2
+ print(v1)
+ struct menuItem {
+     var drink: String
+     var burgers: Int
+ }
+ let myOrder = menuItem(drink: "coke",burgers: 2)
+ //myOrder.burgers = 3
+ //above statment results in error because even though drink is var but instance variable myOrder is constant
+ /*This behavior is due to structures being value types. When an instance of a value type is marked as a constant, 
+ so are all of its properties.
+ The same is not true for classes, which are reference types. If you assign an instance 
+ of a reference type to a constant, you can still change that instance’s variable properties.*/
+
+ //2)LAZY STORED PROPERTY
+ //A lazy stored property is a property whose initial value is not calculated until the first time it is used.
+ /*Lazy properties are useful when the initial value for a property is dependent on outside factors whose values 
+ are not known until after an instance’s initialization is complete.
+  Lazy properties are also useful when the initial value for a property requires 
+  complex or computationally expensive setup that should not be performed unless or until it is needed.*/
+  
