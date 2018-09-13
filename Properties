@@ -18,6 +18,10 @@ Stored properties are provided only by classes and structures.*/
  The same is not true for classes, which are reference types. If you assign an instance 
  of a reference type to a constant, you can still change that instance’s variable properties.*/
 
+ 
+ 
+ 
+ 
  //2)LAZY STORED PROPERTY
  //can be used only for members of class or structs
  //A lazy stored property is a property whose initial value is not calculated until the first time it is used.
@@ -42,7 +46,6 @@ class c2 {
          print("an instance of c2 class has been created")
     }
 }
-
 var obj2 = c2(str: "ap")
 //instance of c1 class has yet not been created
 //it will be created when we use it for the very first time
@@ -50,6 +53,7 @@ print(obj2.obj1.name)
 /*Interesting Fact : Global constants and variables are always computed lazily, in a similar manner to Lazy Stored Properties.
 Unlike lazy stored properties, global constants and variables do not need to be marked with the lazy modifier.
 Local constants and variables are never computed lazily.*/
+
 
 
 
@@ -89,6 +93,7 @@ struct areaRectangle {
  
  
  
+ 
  //4)PROPERTY OBSERVERS
 /*Property observers observe and respond to changes in a property’s value.
  Property observers are called every time a property’s value is set, 
@@ -116,6 +121,24 @@ subject = "eng"
 
 
 
+
+//5)TYPE PROPERTIES : same as static variable/constant in c++ class/struct
+/* properties that belong to the type itself, not to any one instance of that type. 
+There will only ever be one copy of these properties, no matter how many instances of that type you create. 
+These kinds of properties are called type properties.*/
+//You define type properties with the static keyword.
+class someClass {
+    static var noOfObjectsCreated = 0
+    var name: String = "someName"
+    var roll_no: Int = -1
+    init() {
+        someClass.noOfObjectsCreated = someClass.noOfObjectsCreated + 1
+    }
+}
+var obj1 = someClass()
+var obj2 = someClass()
+var obj3 = someClass()
+print("number of instances of someClass : \(someClass.noOfObjectsCreated) ")
  
  
 
