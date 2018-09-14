@@ -3,3 +3,62 @@ The fact that structures and enumerations can define methods in Swift is a MAJOR
 In Objective-C, classes are the only types that can define methods. In Swift, you can choose whether
 to define a class, structure, or enumeration, and still have the flexibility to define methods on the type you create.
 */
+
+
+
+//1)The self Property
+/*Every instance of a type has an implicit property called self, which is exactly equivalent to the instance itself.
+ You use the self property to refer to the current instance within its own instance methods.*/
+ class someClass {
+     var num: Int
+     func multiplyBy (x: Int) {
+         self.num = self.num * x
+     }
+     init(num: Int) {
+         self.num = num
+     }
+ }
+ var obj = someClass(num: 3)
+ obj.multiplyBy(x: 5)
+ print(obj.num)
+
+
+
+
+//2)MUTATING FUNCTIONS
+ /*Structures and enumerations are value types. By default, the properties of a value type 
+ cannot be modified from within its instance methods.
+ However, if you need to modify the properties of your structure or enumeration within a particular method, 
+ you can opt in to mutating behavior for that method*/
+ //a mutating fucntion can do 2 things: 
+ //->change the value of properties & 
+ struct abc {
+     var name: String
+     mutating func addSurname(surname: String){
+         name = name + surname
+     }
+ }
+ var inst = abc(name: "aanchal ")
+ inst.addSurname(surname: "patial")
+ print(inst.name)
+ //->can make completely newinstance using self keyword
+ struct def {
+     var name: String
+     var roll_no: Int
+     mutating func changeDetails(n: String,r: Int) {
+         self = def(name: n,roll_no: r)
+     }
+ }
+ var inst1 = def(name: "aanchal",roll_no: 7)
+ inst1.changeDetails(n: "anand",r: 69)
+ print("new details: \(inst1.name) , \(inst1.roll_no) .")
+
+
+
+
+//3)TYPE METHODS
+/*As we have TYPE PROPERTIES, we can also have TYPE METHODS
+You generally declare a method as a Type Method by using the static keyword for both Reference types and Value Type (now).
+ If you want a subclass of a class to be able to override the Type method, you can use the 
+ **** 'class' ****  keyword instead.
+*/
