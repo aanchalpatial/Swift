@@ -1,3 +1,11 @@
+//WE HAVE:
+/*
+->METHODS :- allowed in class,struc & enum
+->TYPE(static) METHODS :-allowed in class,struct & enum
+->MUTATING METHODS:- required for value types i.e struct & enum 
+->*/
+
+
 /*Methods are functions that are associated with a particular type. 
 The fact that structures and enumerations can define methods in Swift is a MAJOR DIFFERENCE from C and Objective-C.
 In Objective-C, classes are the only types that can define methods. In Swift, you can choose whether
@@ -56,7 +64,7 @@ to define a class, structure, or enumeration, and still have the flexibility to 
 
 
 
-//3)TYPE METHODS
+//3)TYPE METHODS (used keywords 'static' & 'class')
 /*As we have TYPE PROPERTIES, we can also have TYPE METHODS
 You generally declare a method as a Type Method by using the static keyword for both Reference types and Value Type (now).
  If you want a subclass of a class to be able to override the Type method, you can use the 
