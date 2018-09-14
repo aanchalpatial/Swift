@@ -1,0 +1,52 @@
+/*Inheritance is a fundamental behavior that differentiates classes from other types in Swift
+As structs & enum dont have inheritence*/
+
+//1)OVERRIDING
+//keyword used is : 'override'
+/*A subclass can provide its own custom implementation of an instance method, type method, instance property, 
+type property, or subscript that it would otherwise inherit from a superclass. This is known as overriding.*/
+
+//A)METHOD OVERRIDING
+//you can Access Superclass Methods, Properties, and Subscripts using 'super' keyword
+class player {
+    var name: String 
+    var weight: Int
+    func profile() {
+        print("\(name) is an athelete")
+    }
+    init(name: String,weight: Int) {
+        self.name = name
+        self.weight = weight
+    }    
+}
+class footballPlayer: player {          //syntax to inherit ->  class subclass : baseclass {} 
+    var teamName: String
+    var jersey: Int
+    override func profile() {
+        super.profile()         // accessing base class method using super keyword
+        print("\(self.name) plays football for \(self.teamName)")
+    }
+    init (teamName: String,jersey: Int,name: String) {
+        self.teamName = teamName
+        self.jersey = jersey
+        super.init(name: name,weight: -1)
+        self.name = name
+    }
+}
+var player1 = footballPlayer(teamName: "juventus fc",jersey: 07,name: "ronaldo")
+player1.profile()
+//note: if you want a TYPE(static)  METHOD to be allowed to be inherited
+// declare it using 'class' keyword instead of 'static' keyword, otherwise it won't be inherited
+
+
+//B)PROPERTY OVERRIDING
+//B1)overriding property observers for stored properties
+//B2)overridign set{} & get{} for computed properties
+
+
+
+
+//2)PREVENTING INHERITANCE & OVERRIDES
+/*A class can be prevented from being inherited & method,property can be prevented from being overriden 
+by using 'final' keyword.*/
+
