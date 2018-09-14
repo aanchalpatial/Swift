@@ -1,0 +1,26 @@
+import Foundation
+
+//->Unlike Objective-C initializers, Swift initializers do not return a value.
+/*->When you assign a default value to a stored property, or set its initial value within an initializer, 
+the value of that property is set directly, without calling any property observers.*/
+//->both classes & struct get a default initialiser that provides default values for all of its properties and does not provide at least one initializer itself.
+//->struct have a memberwise initialiser  whereas classes don't,the have to use init()
+struct someStruct {
+    var name: String
+    var roll: Int
+}
+var st1 = someStruct(name: "ap",roll: 06)
+//classes get no such initialiser
+print(st1.name)
+//->Properties of optional type are automatically initialized with a value of nil
+//->Initializers can call other initializers to perform part of an instance’s initialization. 
+//This process, known as initializer delegation, avoids duplicating code across multiple initializers.
+
+
+//2)CLASS INHERITENCE & INITIALISATION
+/*All of a class’s stored properties—including any properties the class inherits from 
+its superclass—must be assigned an initial value during initialization.
+Swift provides 2 kinds of initialiser for class types : -
+->2A)Designated Initialiser :
+->2B)Convenience Initialiser
+*/
