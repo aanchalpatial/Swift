@@ -1,3 +1,13 @@
+//WE HAVE:
+/*
+->STOREDPROPERTY :- allowed in all 3
+->COMPUTED PROPERTY :-allowed in class & struct only
+->TYPE(static) PROPERTY :-allowed in class & struct only
+->LAZY STORED PROPERTY :- allwed in class & struct only
+->PROPERT OBSERVERS:- allowed in stored prop, no need for computed prop.
+*/
+
+
 
 /*Computed properties are provided by classes, structures, and enumerations. 
 Stored properties are provided only by classes and structures.*/
