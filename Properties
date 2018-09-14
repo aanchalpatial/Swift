@@ -4,7 +4,7 @@
 ->COMPUTED PROPERTY :-allowed in class & struct only
 ->TYPE(static) PROPERTY :-allowed in class & struct only
 ->LAZY STORED PROPERTY :- allwed in class & struct only
-->PROPERT OBSERVERS:- allowed in stored prop, no need for computed prop.
+->PROPERT OBSERVERS(willSE:- stored prop have property observers(willSet,didSet) where as computed prop (have get,set)
 */
 
 
