@@ -3,12 +3,15 @@
 can have both properties & methods.
 BUT in swift structres as well as classes both can have properties & methods.
 So what is the difference between them in swift???
-There are 2 MAJOR differences between structures & classes in swift :-
+There are 3 MAJOR differences between structures & classes in swift :-
 ->classes are REFERENCE TYPES, structures are VALUE TYPES
       (In fact, all of the basic types in Swift—integers, floating-point numbers, Booleans, strings, 
       arrays and dictionaries-are value types, and are implemented as structures behind the scenes.)
       (identity operator === is used to check if 2 instances of a class refer to same object)
 ->classes allows inheritence whereas structure don't.
+->Structures and enumerations are value types. By default, the properties of a value type cannot be modified
+from within its instance methods.(they have to use mutating methods)
+
 There are other minor differences which you can find on the link: https://docs.swift.org/swift-book/LanguageGuide/ClassesAndStructures.html
 The additional capabilities that classes support come at the cost of increased complexity.
 structures are PREFERED OVER classes when u both are eligible acc. to ur need
