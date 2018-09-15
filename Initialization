@@ -54,7 +54,7 @@ class student {
      init(name: String , fatherName: String, motherName: String){
          self.fatherName = fatherName
          self.motherName = motherName
-         super.init(name: name)
+         super.init(name: name)     //this statement has to be the last statement of this initialiser
         }
  }
  var someStudent = studentParentDetails(name: "ap",fatherName: "raj kumar", motherName: "veena devi")
