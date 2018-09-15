@@ -1,26 +1,69 @@
 import Foundation
 
-//->Unlike Objective-C initializers, Swift initializers do not return a value.
-/*->When you assign a default value to a stored property, or set its initial value within an initializer, 
+/*Classes and structures ***MUST*** set all of their stored properties to an appropriate initial value by the time
+an instance of that class or structure is created. Stored properties cannot be left in an indeterminate state.
+hen you assign a default value to a stored property, or set its initial value within an initializer, 
 the value of that property is set directly, without calling any property observers.*/
-//->both classes & struct get a default initialiser that provides default values for all of its properties and does not provide at least one initializer itself.
-//->struct have a memberwise initialiser  whereas classes don't,the have to use init()
+
+
+//init() is used for initialisation. Unlike Objective-C initializers, Swift initializers do not return a value
+
+
+/*Swift provides a default initializer for any structure or class that provides default values for all of its properties
+and does not provide at least one initializer itself.*/
+struct xyz {
+    var name = "ap"
+    var age: Int?                   //Properties of optional type are AUTOMATICALLY initialized with a value of nil
+    }
+//since all stored properties of class xyz have a default value , they get a default initialiser
+ var someInstance = xyz()
+
+
+
+/*struct have a memberwise initialiser  whereas classes don't,they have to use init() for memberwise initialisation*/
 struct someStruct {
     var name: String
     var roll: Int
 }
-var st1 = someStruct(name: "ap",roll: 06)
-//classes get no such initialiser
+var st1 = someStruct(name: "ap",roll: 06)           //memberwise initialiser, classes get no such initialiser
 print(st1.name)
-//->Properties of optional type are automatically initialized with a value of nil
-//->Initializers can call other initializers to perform part of an instance’s initialization. 
-//This process, known as initializer delegation, avoids duplicating code across multiple initializers.
 
 
-//2)CLASS INHERITENCE & INITIALISATION
-/*All of a class’s stored properties—including any properties the class inherits from 
-its superclass—must be assigned an initial value during initialization.
-Swift provides 2 kinds of initialiser for class types : -
-->2A)Designated Initialiser :
-->2B)Convenience Initialiser
-*/
+
+
+
+//You can assign a value to a constant property at any point during initialization, as long as it is set to a definite value by the time initialization finishes.
+
+
+
+//INITIALISER DELEGATION
+/*Initializers can call other initializers to perform part of an instance’s initialization. 
+This process, known as initializer delegation, avoids duplicating code across multiple initializers.
+
+Initialiser delegation process for structs are simple as they don't allow inheritence so initialiser only have
+to delegate with initialiser provided with same class, but the same for classes becomem complex due to inheritence*/
+class student {
+    var name: String
+    var age: Int?
+    init(name: String) {
+        self.name = name}
+}
+ class studentParentDetails: student {
+     var fatherName: String
+     var motherName: String
+     init(name: String , fatherName: String, motherName: String){
+         self.fatherName = fatherName
+         self.motherName = motherName
+         super.init(name: name)
+        }
+ }
+ var someStudent = studentParentDetails(name: "ap",fatherName: "raj kumar", motherName: "veena devi")
+ print(someStudent.name)
+ 
+ 
+ 
+ 
+ /* LEFT.......Class Inheritance and Initialization
+Failable Initializers
+Required Initializers
+Setting a Default Property Value with a Closure or Function*/
