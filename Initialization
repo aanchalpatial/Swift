@@ -62,8 +62,20 @@ class student {
  
  
  
- 
- /* LEFT.......Class Inheritance and Initialization
-Failable Initializers
-Required Initializers
-Setting a Default Property Value with a Closure or Function*/
+ //CLASS INHERITANCE & INITIALISATION
+ /*All of a class’s stored properties—including any properties the class inherits from its superclass 
+ must be assigned an initial value during initialization.*/
+ //Swift defines 2 kinds of initializers : 
+/*->Designated Initialiser
+Every class must have at least one designated initializer.Designated initializers are the primary initializers for a class.
+A designated initializer fully initializes all properties introduced by that class and
+calls an appropriate superclass initializer to continue the initialization process up the superclass chain.*/
+/*->Convenience Initialiser  ,keyword used 'convenience' just before 'init' keyword
+Convenience initializers are secondary, supporting initializers for a class.
+You do not have to provide convenience initializers if your class does not require them.
+You can define a convenience initializer to call a designated initializer from the same class
+as the convenience initializer with some of the designated initializer’s parameters set to default values*/
+
+
+
+//TBD
