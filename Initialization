@@ -62,40 +62,128 @@ class student {
  
  
  
+ import Foundation
+
+
  //5) ********CLASS INHERITANCE & INITIALISATION************
- 
  /*All of a class’s stored properties—including any properties the class inherits from its superclass 
- must be assigned an initial value during initialization.*/
- //Swift defines 2 kinds of initializers : 
-/*->Designated Initialiser
-Every class must have at least one designated initializer.Designated initializers are the primary initializers for a class.
-A designated initializer fully initializes all properties introduced by that class and
-calls an appropriate superclass initializer to continue the initialization process up the superclass chain.
-DESIGNATED INITIALISER MUST ALWAYS DELEGATE UP (TO DELEGATE INITIALISER ONLY)*/
-/*->Convenience Initialiser  ,keyword used 'convenience' just before 'init' keyword
-Convenience initializers are secondary, supporting initializers for a class.
-You do not have to provide convenience initializers if your class does not require them.
-You can define a convenience initializer to call a designated initializer from the same class
-as the convenience initializer with some of the designated initializer’s parameters set to default values
-CONVENIENCE INITIALISER MUST ALWAYS DELEGATE ACROSS*/
-/*Swift applies the following three rules for delegation calls between initializers:
+ MUST be assigned an initial value during initialization.*/
+ 
+ //5A) Swift defines 2 kinds of initializers for class types to help ensure all stored properties receive an initial value.: 
+        /*->Designated Initialiser
+        Every class must have at least one designated initializer.Designated initializers are the primary initializers for a class.
+        A designated initializer fully initializes all properties introduced by that class and
+        calls an appropriate superclass initializer to continue the initialization process up the superclass chain.
+        eg:default initialiser of a class is designated initialiser as well
+        DESIGNATED INITIALISER MUST ALWAYS DELEGATE UP (TO DELEGATE INITIALISER ONLY)*/
+        /*->Convenience Initialiser  ,keyword used 'convenience' just before 'init' keyword
+        Convenience initializers are secondary, supporting initializers for a class.
+        You do not have to provide convenience initializers if your class does not require them.
+        You can define a convenience initializer to call a designated initializer from the same class
+        as the convenience initializer with some of the designated initializer’s parameters set to default values
+        CONVENIENCE INITIALISER MUST ALWAYS DELEGATE ACROSS*/
+
+/*5B) Swift applies the following three rules for delegation calls between initializers:(See diagram as well)
 Rule 1
 A designated initializer must call a designated initializer from its immediate superclass.
 Rule 2
 A convenience initializer must call another initializer from the same class.
 Rule 3
 A convenience initializer must ultimately call a designated initializer.
+
 A simple way to remember this is:
-
 Designated initializers must always delegate up.
-Convenience initializers must always delegate across.
+Convenience initializers must always delegate across.*/
 
-TWO PHASE INITIALISATION
-Class initialization in Swift is a two-phase process. In the first phase, each stored property is assigned an initial value 
+
+/*5C) TWO PHASE INITIALISATION
+5Ca->)Class initialization in Swift is a 2-phase process. In the first phase, each stored property is assigned an initial value 
 by the class that introduced it. Once the initial state for every stored property has been determined, 
 the second phase begins, and each class is given the opportunity to customize its stored properties further before 
 the new instance is considered ready for use.
 
+5Cb->)Swift’s compiler performs four helpful safety-checks to make sure that two-phase initialization is completed without error:
+Safety check 1
+A designated initializer must ensure that all of the properties introduced by its class are initialized 
+before it delegates up to a superclass initializer.As mentioned above, the memory for an object is only 
+considered fully initialized once the initial state of all of its stored properties is known. In order 
+for this rule to be satisfied, a designated initializer must make sure that all of its own properties 
+are initialized before it hands off up the chain.
+Safety check 2
+A designated initializer must delegate up to a superclass initializer before assigning a value to an 
+inherited property. If it doesn’t, the new value the designated initializer assigns will be overwritten 
+by the superclass as part of its own initialization.
+Safety check 3
+A convenience initializer must delegate to another initializer before assigning a value to any property
+(including properties defined by the same class). If it doesn’t, the new value the convenience initializer 
+assigns will be overwritten by its own class’s designated initializer.
+Safety check 4
+An initializer cannot call any instance methods, read the values of any instance properties, or refer to
+self as a value until after the first phase of initialization is complete.
+
+5Cc->)Here’s how two-phase initialization plays out, based on the four safety checks above:(See diagram as well)
+Phase 1
+-A designated or convenience initializer is called on a class.
+-Memory for a new instance of that class is allocated. The memory is not yet initialized.
+-A designated initializer for that class confirms that all stored properties introduced by that class have a value.
+ The memory for these stored properties is now initialized.
+-The designated initializer hands off to a superclass initializer to perform the same task for its own stored properties.
+-This continues up the class inheritance chain until the top of the chain is reached.
+-Once the top of the chain is reached, and the final class in the chain has ensured that all of its stored properties 
+ have a value, the instance’s memory is considered to be fully initialized, and phase 1 is complete.
+Phase 2
+-Working back down from the top of the chain, each designated initializer in the chain has the option to 
+ customize the instance further. Initializers are now able to access self and can modify its properties, 
+ call its instance methods, and so on.
+-Finally, any convenience initializers in the chain have the option to customize the instance and to work with self.
+
+5Cd->)Initializer Inheritance and Overriding
+        =>(Overriding super class designated initialiser)
+         When you write a subclass initializer that matches a superclass designated initializer,
+         you are effectively providing an override of that designated initializer. Therefore, 
+         you must write the override modifier before the subclass’s initializer definition.
+         This is true even if you are overriding an automatically provided default initializer.
+        =>(Overriding super class convenience initialiser)
+         Conversely, if you write a subclass initializer that matches a superclass convenience initializer, 
+         that superclass convenience initializer can never be called directly by your subclass, as per the rules 
+         described above in Initializer Delegation for Class Types. Therefore, your subclass is not (strictly speaking)
+         providing an override of the superclass initializer. As a result, you do not write the override modifier 
+         when providing a matching implementation of a superclass convenience initializer.
 */
+class name {
+    var firstName: String = "abc"
+    var lastName: String?
+    
+    convenience init(lastName: String){         //convenience initialiser
+        self.init()         //calling default designated initialiser
+        self.lastName = lastName 
+    }
+}
+class details: name {
+    var age: Int
+    override init() {       //overriding designated (default) initialiser
+        age = 0
+        super.init()        //designated can only call superclass designated initialiser only
+    }
+    convenience init(lastName: String) { //overriding covenience initialiser of superclass...no need of override keyword
+        self.init()
+        self.lastName = lastName + lastName
+    }
+}
+var person = details(lastName: "patial")
+print(person.lastName)
+//5ce->)AUTOMATIC INITIALISER INHERITENCE ...left...
+
+
+
+
+//5D)FAIlABLE INITIALISER
+
+
+
+
+
+
+
 
 
