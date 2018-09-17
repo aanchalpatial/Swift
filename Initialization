@@ -1,6 +1,6 @@
 import Foundation
 
-/*Classes and structures ***MUST*** set all of their stored properties to an appropriate initial value by the time
+/*1)Classes and structures ***MUST*** set all of their stored properties to an appropriate initial value by the time
 an instance of that class or structure is created. Stored properties cannot be left in an indeterminate state.
 hen you assign a default value to a stored property, or set its initial value within an initializer, 
 the value of that property is set directly, without calling any property observers.*/
@@ -9,7 +9,7 @@ the value of that property is set directly, without calling any property observe
 //init() is used for initialisation. Unlike Objective-C initializers, Swift initializers do not return a value
 
 
-/*Swift provides a default initializer for any structure or class that provides default values for all of its properties
+/*2)Swift provides a DEFAULT initializer for any structure or class that provides default values for all of its properties
 and does not provide at least one initializer itself.*/
 struct xyz {
     var name = "ap"
@@ -20,7 +20,7 @@ struct xyz {
 
 
 
-/*struct have a memberwise initialiser  whereas classes don't,they have to use init() for memberwise initialisation*/
+/*3)struct have a MEMBERWISE initialiser  whereas classes don't,they have to use init() for memberwise initialisation*/
 struct someStruct {
     var name: String
     var roll: Int
@@ -36,7 +36,7 @@ print(st1.name)
 
 
 
-//INITIALISER DELEGATION
+//4)INITIALISER DELEGATION
 /*Initializers can call other initializers to perform part of an instance’s initialization. 
 This process, known as initializer delegation, avoids duplicating code across multiple initializers.
 
@@ -54,7 +54,7 @@ class student {
      init(name: String , fatherName: String, motherName: String){
          self.fatherName = fatherName
          self.motherName = motherName
-         super.init(name: name)     //this statement has to be the last statement of this initialiser
+         super.init(name: name)     //this statement HAS to be the last statement of this initialiser
         }
  }
  var someStudent = studentParentDetails(name: "ap",fatherName: "raj kumar", motherName: "veena devi")
@@ -62,20 +62,40 @@ class student {
  
  
  
- //CLASS INHERITANCE & INITIALISATION
+ //5) ********CLASS INHERITANCE & INITIALISATION************
+ 
  /*All of a class’s stored properties—including any properties the class inherits from its superclass 
  must be assigned an initial value during initialization.*/
  //Swift defines 2 kinds of initializers : 
 /*->Designated Initialiser
 Every class must have at least one designated initializer.Designated initializers are the primary initializers for a class.
 A designated initializer fully initializes all properties introduced by that class and
-calls an appropriate superclass initializer to continue the initialization process up the superclass chain.*/
+calls an appropriate superclass initializer to continue the initialization process up the superclass chain.
+DESIGNATED INITIALISER MUST ALWAYS DELEGATE UP (TO DELEGATE INITIALISER ONLY)*/
 /*->Convenience Initialiser  ,keyword used 'convenience' just before 'init' keyword
 Convenience initializers are secondary, supporting initializers for a class.
 You do not have to provide convenience initializers if your class does not require them.
 You can define a convenience initializer to call a designated initializer from the same class
-as the convenience initializer with some of the designated initializer’s parameters set to default values*/
+as the convenience initializer with some of the designated initializer’s parameters set to default values
+CONVENIENCE INITIALISER MUST ALWAYS DELEGATE ACROSS*/
+/*Swift applies the following three rules for delegation calls between initializers:
+Rule 1
+A designated initializer must call a designated initializer from its immediate superclass.
+Rule 2
+A convenience initializer must call another initializer from the same class.
+Rule 3
+A convenience initializer must ultimately call a designated initializer.
+A simple way to remember this is:
+
+Designated initializers must always delegate up.
+Convenience initializers must always delegate across.
+
+TWO PHASE INITIALISATION
+Class initialization in Swift is a two-phase process. In the first phase, each stored property is assigned an initial value 
+by the class that introduced it. Once the initial state for every stored property has been determined, 
+the second phase begins, and each class is given the opportunity to customize its stored properties further before 
+the new instance is considered ready for use.
+
+*/
 
 
-
-//TBD
