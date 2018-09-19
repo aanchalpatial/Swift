@@ -206,6 +206,39 @@ might be triggered by invalid initialization parameter values, the absence of a 
 
 
 
+//5E)REQUIRED INITIALISER 
+/*Write the required modifier before keyword init to indicate that every subclass of the class must implement that
+ initializer.
+
+USES:-You do not have to provide an explicit implementation of a required initializer if you can 
+satisfy the requirement with an inherited initializer.
+
+You must also write the required modifier before every subclass implementation of a required initializer,
+ to indicate that the initializer requirement applies to further subclasses in the chain. 
+ 
+ You do not write the override modifier when overriding a required designated initializer:*/
+class section {
+    var numOfStudents: Int
+    required init(num: Int) {
+        self.numOfStudents = num
+    }
+}
+class pqr: section {
+    var x: Int
+    required init(num: Int) {
+        self.x = num
+        super.init(num: num)
+    }
+}
+var rst = pqr(num: 10)
+print(rst.numOfStudents)
+print(rst.x)
+
+
+//6)left.......Setting a Default Property Value with a Closure or Function
+
+
+
 
 
 
