@@ -178,6 +178,33 @@ print(person.lastName)
 
 
 //5D)FAIlABLE INITIALISER
+/*It is sometimes useful to define a class, structure, or enumeration for which initialization can fail.This failure 
+might be triggered by invalid initialization parameter values, the absence of a required external resource,
+ or some other condition that prevents initialization from succeeding. 
+
+ You write a failable initializer by placing a question mark after the init keyword (init?)
+ 
+ You write return nil to trigger an initialization failure, but you DO NOT use the return keyword
+  to indicate initialization success
+  
+    //You can override a failable initializer with a nonfailable initializer but not the other way around.
+.*/
+  class about {
+      var name: String
+      init? (name: String) {
+          if name.isEmpty {
+              print("your instance couldn't be initialised")
+              return nil
+          }
+          else {
+              print("instance is initialised")
+              self.name = name
+          }
+      }
+  }
+  var person2 = about(name: "")
+
+
 
 
 
